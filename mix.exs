@@ -50,7 +50,7 @@ defmodule NervesSystemA64Olinuxino.MixProject do
     [
       {:nerves, "~> 1.5.4 or ~> 1.6.0", runtime: false},
       {:nerves_system_br, "1.11.0", runtime: false},
-      {:nerves_toolchain_arm_unknown_linux_gnueabihf, "~> 1.3.0", runtime: false},
+      {:nerves_toolchain_aarch64_unknown_linux_gnu, "~> 1.3.0", runtime: false},
       {:nerves_system_linter, "~> 0.3.0", runtime: false},
       {:ex_doc, "~> 0.18", only: [:dev, :test], runtime: false}
     ]
@@ -75,17 +75,21 @@ defmodule NervesSystemA64Olinuxino.MixProject do
       "fwup_include",
       "linux",
       "rootfs_overlay",
-      "uboot",
+      "busybox_defconfig",
       "busybox.fragment",
       "CHANGELOG.md",
-      "fwup-revert.conf",
+      "Config.in",
+      "external.mk",
       "fwup.conf",
+      "fwup-revert.conf",
       "LICENSE",
-      "mix.exs",
+      "linux-5.2_defconfig",
+      "mix.exs      ",
       "nerves_defconfig",
       "post-build.sh",
       "post-createfs.sh",
       "README.md",
+      "uboot_defconfig",
       "VERSION"
     ]
   end
