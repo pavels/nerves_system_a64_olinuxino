@@ -16,9 +16,14 @@ workflows:
           exec:
             <<: *exec
           context: org-global
+          # filters:
+          #   tags:
+          #     only: /.*/
           filters:
+            branches:
+              ignore: /.*/
             tags:
-              only: /.*/
+              only: /v.*/          
       # - build-tools/build-test:
       #     exec:
       #       <<: *exec
