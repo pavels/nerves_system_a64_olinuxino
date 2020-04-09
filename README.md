@@ -1,6 +1,6 @@
 # Generic A64-OLinuXino Support
 
-[![CircleCI](https://circleci.com/gh/nerves-project/nerves_system_a64_olinuxino.svg?style=svg)](https://circleci.com/gh/nerves-project/nerves_system_a64_olinuxino)
+[![CircleCI](https://circleci.com/gh/pavels/nerves_system_a64_olinuxino.svg?style=svg)](https://circleci.com/gh/pavels/nerves_system_a64_olinuxino)
 [![Hex version](https://img.shields.io/hexpm/v/nerves_system_a64_olinuxino.svg "Hex version")](https://hex.pm/packages/nerves_system_a64_olinuxino)
 
 This is the base Nerves System configuration for the [A64-OLinuXino](https://www.olimex.com/Products/OLinuXino/A64/A64-OLinuXino)
