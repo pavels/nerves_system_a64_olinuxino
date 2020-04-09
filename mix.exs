@@ -84,7 +84,7 @@ defmodule NervesSystemA64Olinuxino.MixProject do
       "fwup-revert.conf",
       "LICENSE",
       "linux-5.2_defconfig",
-      "mix.exs      ",
+      "mix.exs",
       "nerves_defconfig",
       "post-build.sh",
       "post-createfs.sh",
