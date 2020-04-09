@@ -1,0 +1,6 @@
+config BR2_PACKAGE_A64SERVO
+        bool "a64servo"
+        help
+          Kernel module for software PWM support.
+
+          https://github.com/d3v1c3nv11/a64servo
