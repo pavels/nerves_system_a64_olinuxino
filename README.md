@@ -16,7 +16,7 @@ This is the base Nerves System configuration for the [A64-OLinuXino](https://www
 | IEx terminal         | UART `ttyS0`                    |
 | GPIO, I2C, SPI       | Yes, I2C and SPI on UEXT        |
 | ADC                  | No                              |
-| PWM                  | Yes, but only software          |
+| PWM                  | No                              |
 | UART                 | ttyS0 + ttyS2 on UEXT           |
 | Camera               | None                            |
 | Ethernet             | Yes                             |
@@ -97,25 +97,27 @@ you will be responsible for setting this yourself.
 
 All parts of `UEXT` port are enabled and supported.
 
-SPI is on `/dev/spidev0.0`
+SPI is on `spidev0.0`
 
-I2c is on `/dev/i2c-0` - you can use `i2cdetect -y 0` to check what is on the i2c bus
+I2c is on `i2c-0`
 
-UART is on `/dev/ttyS2`
+UART is on `ttyS1`
+
+## GPIO
+
+For GPIO access use [circuits_cdev](https://github.com/elixir-circuits/circuits_cdev).
+
+All GPIOs are on `gpiochip2`.
+
+Use following formula to calculate proper GPIO number from pin name (like PE0):
+
+```
+(position of letter in alphabet - 1) * 32 + pin number
+```
+
+> For `PE0` this would be '`4 * 32 + 0 = 128`'
 
 ## SPI
-
-The following examples shows how to get SPI0 functional in Elixir. SPI0 port is on `UEXT` header.
-
-Verify that the device drivers are loaded and read spi0 transfers:
-
-```elixir
-iex(11)> cmd("ls /dev/spi*")
-/dev/spidev0.0
-
-iex(12)> File.read "/sys/bus/spi/devices/spi0.0/statistics/transfers"
-{:ok, "0"}
-```
 
 If you have included [circuits_spi](https://github.com/elixir-circuits/circuits_spi) as a
 dependency, you can start it now and test a transfer:
@@ -125,21 +127,21 @@ dependency, you can start it now and test a transfer:
 > be different.
 
 ```elixir
-iex(13)> {:ok, ref} = Circuits.SPI.open("spidev0.0")
+iex> {:ok, ref} = Circuits.SPI.open("spidev0.0")
 {:ok, #Reference<...>}
-iex(14)> Circuits.SPI.transfer(ref, <<1,2,3,4>>)
-<<255, 255, 255, 255>>
+iex> Circuits.SPI.transfer(ref, <<1,2,3,4>>)
+<<0, 0, 0, 0>>
 ```
 
-## PWM
+## I2C
 
-A64 CPU has only one Hardware PWM channel and it collides with debug UART pins. Therefore this system uses Software PWM kernel module, which enables Software PWM on nearly all GPIO pins. CHek it;s documentation at [https://github.com/pavels/a64servo](https://github.com/pavels/a64servo).
+If you have included [circuits_i2c](https://github.com/elixir-circuits/circuits_i2c) as a
+dependency, you can use it to scan for devices:
 
-To use it first initialize it by calling
 ```elixir
-System.cmd("servo.sh", ["load"])
+iex> Circuits.I2C.detect_devices()
+Devices on I2C bus "i2c-0":
 ```
-in target initialization.
 
 ## Audio
 
@@ -155,26 +157,17 @@ System.cmd("amixer", ["-q", "sset", "Headphone", "100%", "on"])
 ```
 
 To enable microphone input execute
+
 ```elixir
 System.cmd("amixer", ["-q", "sset", "AIF1 Data Digital ADC", "cap", "on"])
 System.cmd("amixer", ["-q", "sset", "Mic1", "43%", "cap", "on"])
 ```
-
-You can use `sox` package programs `play` and `rec` for audio input/output.
 
 ## Supported WiFi devices
 
 Some boards has built in RTL8723BS. This module is not always very reliable and the signal strength is problematic due to on board antenna design.
 
 Various USB WIFI dongle are supported. Recommended and tested ones are USB adapters supported by `rt2800usb` driver (Ralink RT2070, RT2770, RT2870, RT3070, RT3071, RT3072, RT3370, RT3572, RT5370, RT5372, RT5572).
-
-## Bluetooth
-
-The A64-OLinuXino boards with built-in WiFi support use the RTL8723BS module.
-This is a combo WiFi/Bluetooth module. Bluetooth is not well supported in
-Nerves. However, Nerves is built on Linux so you can enable and use `bluez`.
-Another option is to use [harald](https://hex.pm/packages/harald) which can
-communicate with the module using low level Bluetooth HCI commands.
 
 ## Installation
 

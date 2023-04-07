@@ -20,4 +20,5 @@ erl_crash.dump
 /build.log
 /archive.log
 /.nerves
-/.elixir_ls
+
+/*.tar.gz

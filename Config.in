@@ -1,3 +1,4 @@
-menu "Custom Packages"
-source "$NERVES_DEFCONFIG_DIR/packages/a64servo/Config.in"
-endmenu
+# Add project-specific packages for Buildroot here
+#
+# If these are non-proprietary, please consider contributing them back to
+# Nerves or Buildroot.

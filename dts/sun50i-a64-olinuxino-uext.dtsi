@@ -1,0 +1,30 @@
+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+// Copyright (C) 2023 Pavel Sorejs
+
+/* Exposed on UEXT connector */
+
+&i2c1 {
+	status = "okay";
+};
+
+&spi0 {
+	status = "okay";
+
+	spidev@0 {
+		compatible = "armbian,spi-dev";
+		reg = <0>;
+		spi-max-frequency = <10000000>;
+		status = "okay";
+	};
+};
+
+&uart3_pins {
+	pins = "PH4", "PH5";
+	function = "uart3";
+};
+
+&uart3 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&uart3_pins>;
+	status = "okay";
+};
