@@ -1,0 +1,36 @@
+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+// Copyright (C) 2023 Pavel Sorejs
+
+/* Fix thermal sensor */
+
+&gpu0_thermal {
+	trips {
+		gpu0_hot_trip: gpu-hot {
+			temperature = <80000>;
+			hysteresis = <2000>;
+			type = "passive";
+		};
+
+		gpu0_very_hot_trip: gpu-very-hot {
+			temperature = <115000>;
+			hysteresis = <0>;
+			type = "critical";
+		};
+	};			
+};
+
+&gpu1_thermal {
+	trips {
+		gpu1_hot_trip: gpu-hot {
+			temperature = <80000>;
+			hysteresis = <2000>;
+			type = "passive";
+		};
+
+		gpu1_very_hot_trip: gpu-very-hot {
+			temperature = <115000>;
+			hysteresis = <0>;
+			type = "critical";
+		};
+	};			
+};

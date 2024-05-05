@@ -4,9 +4,9 @@
 /dts-v1/;
 
 #include "allwinner/sun50i-a64-olinuxino.dts"
-#include "sun50i-a64-olinuxino-sound.dtsi"
 #include "sun50i-a64-olinuxino-hdmi-sound.dtsi"
 #include "sun50i-a64-olinuxino-uext.dtsi"
+#include "sun50i-a64-olinuxino-fix-thermal.dtsi"
 
 / {
 	aliases {

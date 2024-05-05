@@ -1,5 +1,12 @@
 # Changelog
 
+## v1.2.0
+
+* Upgraded kernel to 6.6.29
+* Upgraded buildroot to 2024.02.1
+* Upgraded nerves_system_br to 1.27.1
+* Fix thermal sensor
+
 ## v1.1.0
 
 * Upgraded kernel to 5.15
