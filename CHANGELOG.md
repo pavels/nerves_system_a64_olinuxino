@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.2.1
+
+* Expand CMA size so it is possible to use GPU and HW Video Decoder 
+
 ## v1.2.0
 
 * Upgraded kernel to 6.6.29
